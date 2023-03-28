@@ -84,7 +84,268 @@ Untracked files:
         GIt.txt
 
 ===============================================================================================================
+to add all untracked file to stage area
+
+
+# git add -A
+
+
+if you modify a file of stage area , its modified and again you have to add it into stage area:
+
+like index.html is modified here
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   GIt.txt
+        new file:   index.html
+        new file:   localcode.txt
+        new file:   ram.txt
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   index.html
+
+
+dell@DESKTOP-74O660O MINGW64 /e/it/GIT (master)
+$ git add -A
+
+
+===============================================================================================================
+to commit file from staging area :
+
+# git commit 
+
+the file open 
+add 
+
+initial commit 
+:wq
+
+dell@DESKTOP-74O660O MINGW64 /e/it/GIT (master)
+$ git commit
+[master (root-commit) 02d132e] initial commit
+ 4 files changed, 92 insertions(+)
+ create mode 100644 GIt.txt
+ create mode 100644 index.html
+ create mode 100644 localcode.txt
+ create mode 100644 ram.txt
+
+or 
+
+# git commit -m " add more files to commit" 
+
+dell@DESKTOP-74O660O MINGW64 /e/it/GIT (master)
+$ git commit -m " add more txt"
+[master e77d4c9]  add more txt
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 bay.txt
+
+===============================================================================================================
+git checkout - its match my file to last commit , trick its like undo . means any changes occur and you want to revert the changes and make it original like it is earlier . so checkout command make it to last commit .
+
+
+# cat index.html
+
+i am happy 
+
+# vim index.html 
+
+ really you are ? its ok .
+:wq
+
+# git status index.html 
+
+modified : index.html 
+
+to take the changes to last commit 
+
+# git checkout index.html
+
+to checkout all last file 
+# git checkout -f
+
+===============================================================================================================
+example:
+dell@DESKTOP-74O660O MINGW64 /e/it/GIT (master)
+$ vim index.html
+cat
+dell@DESKTOP-74O660O MINGW64 /e/it/GIT (master)
+$ cat index.html
+i am happy
+really you are happy or you are lying
+
+
+dell@DESKTOP-74O660O MINGW64 /e/it/GIT (master)
+$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   GIt.txt
+        modified:   index.html
+
+dell@DESKTOP-74O660O MINGW64 /e/it/GIT (master)
+$ git checkout index.html
+Updated 1 path from the index
+
+dell@DESKTOP-74O660O MINGW64 /e/it/GIT (master)
+$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   GIt.txt
+===============================================================================================================
+git log 
+
+to check logs of commit
+
+$ git log
+commit e77d4c955aa087814ec9037356d027a747e1f8d3 (HEAD -> master)
+Author: Prashant <pm691997@gmail.com>
+Date:   Tue Mar 28 17:19:50 2023 +0530
+
+     add more txt
+
+commit 02d132e8251342a79e24e68e5588d37e6a1624c2
+Author: Prashant <pm691997@gmail.com>
+Date:   Tue Mar 28 17:13:39 2023 +0530
+
+    initial commit
+
+
+to check last log -
+#git log -p -1
+
+dell@DESKTOP-74O660O MINGW64 /e/it/GIT (master)
+$ git log -p 1
+fatal: ambiguous argument '1': unknown revision or path not in the working tree.
+Use '--' to separate paths from revisions, like this:
+'git <command> [<revision>...] -- [<file>...]'
+dell@DESKTOP-74O660O MINGW64 /e/it/GIT (master)
+$ git log -p -1
+commit e77d4c955aa087814ec9037356d027a747e1f8d3 (HEAD -> master)
+Author: Prashant <pm691997@gmail.com>
+Date:   Tue Mar 28 17:19:50 2023 +0530
+
+     add more txt
+
+diff --git a/bay.txt b/bay.txt
+new file mode 100644
+index 0000000..e69de29
+
+===============================================================================================================
+git diff 
+
+compare my working space to staging area
+and shows the diffrence if found
+
+
+# cat index.html 
+
+i am happy 
+
+# vim index.html 
+i am happy what you think
+
+# git diff 
+
+-
+diff --git a/index.html b/index.html
+index 7ae6769..c2fe6cb 100644
+--- a/index.html
++++ b/index.html
+@@ -1 +1 @@
+-i am happy
++i am happy , what you think ist true
+
+==============================================================================================================
+git diff --staged
+
+it compares my staging area to last commit 
+
+==============================================================================================================
+add directy to commit avoiding staging area :
+
+# git commit -a -m "add directly to commit"
+
+===============================================================================================================
+
+to remove a file from staging area to untracked area :
+
+
+# git rm --cached index.html
+
+to permanently remove a file
+
+# git rm index.html
+
+add a commit 
+
+# git commit -m " remove index "
+
+# git log -p -1
+
+===============================================================================================================
+to show short status :
+
+# git status -s 
+
+
+$ git status -s
+
+ M GIt.txt                                - M in second row is untracked area 
+D  bay.txt
+D  index.html
+?? index.html
+
+===============================================================================================================
+Git ignore - if you want to ignore any file because is not useful and talking lot of space which make pull process slow .
+
+# touch .gitignore
+
+add the file name
+
+it will ignore this file and not show you in untracked or in staging area
+
+dell@DESKTOP-74O660O MINGW64 /e/it/GIT (master)
+$ touch abc.txt
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        .gitignore
+        abc.txt
+        index.html
+
+dell@DESKTOP-74O660O MINGW64 /e/it/GIT (master)
+$ vim .gitignore
+
+abc.txt
+
+:wq
+
+===============================================================================================================
+branches - it creates a copy of your files in different branch other then master you can do any changes in file and it will remain unchange in master branch and if you like the changes you can merge it into master branch.
+
+to check how many branches
+
+# git branch 
+
+to create a new branch name "myworkspace"
+
+# git branch myworkspace
+
+to move inside other branch name myworkspace
+
+# git checkout myworkspace
+
+you do some changes here in code , this all changes are always here they will to affect the file of another branch i.e it creates a copy of file to do changes and if you like the changes you can merge it into master branch.
+
+from master branch run
+
+# git merge myworkspace
 
 
 
-   
+
