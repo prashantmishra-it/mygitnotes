@@ -1,0 +1,90 @@
+Git is an open-source distributed version control system. It is designed to handle minor to major projects with high speed and efficiency. It is developed to co-ordinate the work among the developers. The version control allows us to track and work together with our team members at the same workspace
+===============================================================================================================
+
+if you are using git first time configure name and email :
+
+configuring name and email in GIT
+
+#git config --global user.name Prashant
+
+#git config --global user.email pm691997@gmail.com
+===============================================================================================================
+to edit per-user configuration file
+
+#git config --global --edit
+
+# This is Git's per-user configuration file.
+[user]
+        name = Prashant
+        email = pm691997@gmail.com
+# Please adapt and uncomment the following lines:
+#       name = unknown
+#       email = dell@DESKTOP-74O660O.(none)
+
+===============================================================================================================
+what is a local repo : its basically a storage (folder) to put all the codes there before pulling it to central server.
+
+how to create a local repo for Git :
+
+create a folder and go inside it
+# mkdir/e/it/GIT
+
+# cd /e/it/GIT
+
+# git init
+
+Initialized empty Git repository in E:/it/GIT/.git/
+
+now the folder .git/ works as local repo , if run command ls -la you find a hidden .git file is present there
+
+# ls -la
+
+===============================================================================================================
+# git status - show my untracked , staging area and commit files
+
+untracked -->              staged -->          commit
+
+
+dell@DESKTOP-74O660O MINGW64 /e/it/GIT (master)
+
+$ git status
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        GIt.txt
+        localcode.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+===============================================================================================================
+To add a untracked file to staging are use
+
+# git add filename
+
+# git add localcode.txt
+
+dell@DESKTOP-74O660O MINGW64 /e/it/GIT (master)
+$ git add localcode.txt
+
+dell@DESKTOP-74O660O MINGW64 /e/it/GIT (master)
+$ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   localcode.txt
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        GIt.txt
+
+===============================================================================================================
+
+
+
+   
